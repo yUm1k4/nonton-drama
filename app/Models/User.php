@@ -21,6 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_picture',
+        'role'
     ];
 
     /**
@@ -44,5 +46,25 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function topUps()
+    {
+        return $this->hasMany(CoinTopUp::class);
+    }
+
+    public function unlockedEpisodes()
+    {
+        return $this->hasMany(UnlockedEpisode::class);
+    }
+
+    public function watchProgress()
+    {
+        return $this->hasMany(WatchProgress::class);
     }
 }
