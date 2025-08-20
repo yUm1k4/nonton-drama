@@ -18,8 +18,7 @@ class UserForm
                     ->image()
                     ->maxSize(2048) // 2 MB
                     ->acceptedFileTypes(['image/*'])
-                    ->columnSpanFull()
-                    ->required(),
+                    ->columnSpanFull(),
                 TextInput::make('name')
                     ->label('Nama Pengguna')
                     ->required()
