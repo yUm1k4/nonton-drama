@@ -12,6 +12,7 @@ class SeriesEpisode extends Model
         'title',
         'description',
         'video_url',
+        'video',
         'is_locked',
         'unlock_cost',
     ];

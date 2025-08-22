@@ -16,8 +16,9 @@ return new class extends Migration
             $table->foreignId('series_id')->constrained();
             $table->integer('episode_number');
             $table->string('title');
-            $table->text('description');
-            $table->string('video_url');
+            $table->text('description')->nullable();
+            $table->string('video_url')->nullable();
+            $table->string('video')->nullable();
             $table->boolean('is_locked')->default(false);
             $table->integer('unlock_cost')->default(0);
             $table->timestamps();
