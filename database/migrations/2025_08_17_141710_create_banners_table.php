@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('banners', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('image_url');
+            $table->string('image');
             $table->string('link_url');
             $table->timestamps();
         });
