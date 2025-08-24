@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Widgets\RevenueChartWidget;
 use App\Filament\Widgets\RevenueStatsWidget;
 use App\Filament\Widgets\UserStatsWidget;
 use BackedEnum;
@@ -25,6 +26,7 @@ class Dashboard extends BaseDashboard
         return [
             UserStatsWidget::class,
             RevenueStatsWidget::class,
+            RevenueChartWidget::class,
         ];
     }
 }
