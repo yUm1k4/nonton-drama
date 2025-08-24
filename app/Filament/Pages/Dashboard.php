@@ -2,6 +2,7 @@
 
 namespace App\Filament\Pages;
 
+use App\Filament\Widgets\PopularEpisodesWidget;
 use App\Filament\Widgets\RevenueChartWidget;
 use App\Filament\Widgets\RevenueStatsWidget;
 use App\Filament\Widgets\UserStatsWidget;
@@ -27,6 +28,7 @@ class Dashboard extends BaseDashboard
             UserStatsWidget::class,
             RevenueStatsWidget::class,
             RevenueChartWidget::class,
+            PopularEpisodesWidget::class,
         ];
     }
 }
