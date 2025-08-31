@@ -12,13 +12,16 @@
 </head>
 
 <body class="flex justify-center min-h-screen overflow-hidden text-light font-montserrat">
-<div class="max-w-[760px] pb-24 h-screen w-full bg-primary overflow-y-auto relative">
-    {{ $slot }}
+    <div class="max-w-[760px] pb-24 h-screen w-full bg-primary overflow-y-auto relative">
+        {{ $slot }}
 
-    <x-navbar />
-</div>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+        <x-navbar />
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script type="module" src="{{ asset('assets/js/main.js') }}?v={{ time() }}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>
