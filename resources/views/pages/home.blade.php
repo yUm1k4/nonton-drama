@@ -8,12 +8,12 @@
                     <p class="mr-2 font-medium">Hi, {{ auth()->user()->name }} 👋</p>
                 </div>
                 <div class="flex items-center p-[10px] rounded-full gap-3 bg-light/[.08] backdrop-blur-[48px]">
-                    <img src="{{ asset('assets') }}/icons/gift.svg" alt="Gift Icon" />
+                    <img src="{{ asset('assets/icons/gift.svg') }}" alt="Gift Icon" />
                 </div>
             </div>
         @endauth
 
-        <x-banner />
+        <x-banner :banners="$banners" />
 
         <x-search />
     </header>
