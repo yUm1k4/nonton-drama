@@ -9,7 +9,7 @@
         <div class="swiper-wrapper" style="z-index: 0">
 
             @foreach($series as $item)
-                <a href="/detail.html" class="swiper-slide relative flex-shrink-0 overflow-hidden rounded-3xl">
+                <a href="{{ route('series.show', $item->slug) }}" class="swiper-slide relative flex-shrink-0 overflow-hidden rounded-3xl">
                     <img src="{{ asset('storage/' . $item->thumbnail) }}" alt="Drama 1" class="object-cover object-center w-full h-full" />
                     <div
                         class="absolute flex items-center bg-black/[66%] gap-1 px-[11px] py-2 rounded-full top-2 right-2 backdrop-blur-[42px]">

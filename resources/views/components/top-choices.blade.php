@@ -7,7 +7,7 @@
     <!-- Slider Top Choice -->
     <div class="grid grid-cols-2 gap-2">
         @foreach($series as $item)
-            <a href="/detail/{{ $item->id }}" class="p-3 bg-light/[.04] rounded-2xl">
+            <a href="{{ route('series.show', $item->slug) }}" class="p-3 bg-light/[.04] rounded-2xl">
                 <img src="{{ asset('storage/' . $item->thumbnail) }}" alt="{{ $item->title }}"
                      class="object-cover w-full h-[203px] object-center rounded-lg" />
                 <p class="mt-2">{{ Str::limit($item->title, 25) }}</p>

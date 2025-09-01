@@ -15,7 +15,9 @@
     <div class="max-w-[760px] pb-24 h-screen w-full bg-primary overflow-y-auto relative">
         {{ $slot }}
 
-        <x-navbar />
+        @if($showNavbar ?? true)
+            <x-navbar />
+        @endif
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

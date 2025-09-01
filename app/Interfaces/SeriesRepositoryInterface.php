@@ -8,4 +8,6 @@ interface SeriesRepositoryInterface
         $filters = [],
         $limit = 10,
     );
+
+    public function getBySlug($slug);
 }

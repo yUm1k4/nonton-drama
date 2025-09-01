@@ -49,7 +49,7 @@ class SeriesForm
                 TextInput::make('age_rating')
                     ->label('Rating Usia')
                     ->numeric()
-                    ->minValue(0)
+                    ->minValue(5)
                     ->maxValue(18)
                     ->default(0)
                     ->required()

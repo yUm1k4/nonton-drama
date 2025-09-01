@@ -9,7 +9,13 @@ class SeriesRepository implements SeriesRepositoryInterface
 {
     public function getAll($filters = [], $limit = 10)
     {
-        $query = Series::query()->with('genre');
+        $query = Series::query()
+            ->with('genre')
+            ->withCount('episodes');
+
+        if (isset($filters['exclude_id'])) {
+            $query->where('id', '<>', $filters['exclude_id']);
+        }
 
         if (isset($filters['genre_id'])) {
             $query->where('genre_id', $filters['genre_id']);
@@ -24,5 +30,13 @@ class SeriesRepository implements SeriesRepositoryInterface
         }
 
         return $query->get();
+    }
+
+    public function getBySlug($slug)
+    {
+        return Series::where('slug', $slug)
+            ->with('genre')
+            ->withCount('episodes')
+            ->firstOrFail();
     }
 }
