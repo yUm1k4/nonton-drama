@@ -28,7 +28,7 @@ class BannersTable
                 ImageColumn::make('image')
                     ->label('Gambar')
                     ->width(150)
-                    ->toggleable(isToggledHiddenByDefault: true)
+                    ->disk('public')
             ])
             ->filters([
                 //

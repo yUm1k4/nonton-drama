@@ -20,6 +20,7 @@ class UsersTable
                     ->default(fn(User $record) => 'https://ui-avatars.com/api/?name=' . urlencode($record->name))
                     ->circular()
                     ->imageSize(80)
+                    ->disk('public')
                     ->label('Foto Profil'),
                 TextColumn::make('name')
                     ->label('Nama Pengguna')

@@ -16,6 +16,8 @@ class UserForm
                 FileUpload::make('profile_picture')
                     ->label('Foto Profil')
                     ->image()
+                    ->disk('public')
+                    ->directory('profile-pictures')
                     ->maxSize(2048) // 2 MB
                     ->acceptedFileTypes(['image/*'])
                     ->columnSpanFull(),

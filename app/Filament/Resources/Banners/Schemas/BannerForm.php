@@ -15,6 +15,7 @@ class BannerForm
                 FileUpload::make('image')
                     ->label('Gambar')
                     ->image()
+                    ->disk('public')
                     ->required()
                     ->directory('banners')
                     ->maxSize(2048) // Max size in KB (2MB)

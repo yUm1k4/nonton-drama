@@ -40,6 +40,8 @@ class SeriesForm
                 FileUpload::make('thumbnail')
                     ->label('Thumbnail')
                     ->image()
+                    ->disk('public')
+                    ->directory('series-thumbnails')
                     ->required()
                     ->maxSize(2048) // 2MB
                     ->acceptedFileTypes(['image/*'])
