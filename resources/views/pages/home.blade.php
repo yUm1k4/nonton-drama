@@ -19,7 +19,7 @@
     </header>
 
     <main class="mt-8">
-        <x-trending />
+        <x-trending :series="$trendingSeries" />
 
         <x-top-choices />
 

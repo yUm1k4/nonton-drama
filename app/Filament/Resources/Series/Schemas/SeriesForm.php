@@ -80,7 +80,6 @@ class SeriesForm
                             ->numeric()
                             ->minValue(1)
                             ->required()
-                            ->unique(ignoreRecord: true)
                             ->maxLength(10),
                         TextInput::make('title')
                             ->label('Judul Episode')
