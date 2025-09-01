@@ -21,7 +21,7 @@
     <main class="mt-8">
         <x-trending :series="$trendingSeries" />
 
-        <x-top-choices />
+        <x-top-choices :series="$topChoiceSeries" />
 
         <x-short-dramas />
     </main>

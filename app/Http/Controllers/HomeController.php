@@ -23,8 +23,9 @@ class HomeController extends Controller
     {
         $banners = $this->bannerRepository->getAll();
         $trendingSeries = $this->seriesRepository->getAll(['is_trending' => true]);
+        $topChoiceSeries = $this->seriesRepository->getAll(['is_top_choice' => true]);
 
-        return view('pages.home', compact('banners', 'trendingSeries'));
+        return view('pages.home', compact('banners', 'trendingSeries', 'topChoiceSeries'));
     }
 
 }
