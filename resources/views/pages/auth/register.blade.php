@@ -3,7 +3,7 @@
         <h1 class="text-2xl font-bold">Register</h1>
         <p class="mt-2">Buat Akun Sekarang dan Nikmati Series Favoritmu!</p>
 
-        <form class="mt-8" action="{{ route('auth.register.store') }}" method="POST" enctype="multipart/form-data">
+        <form class="mt-8" action="{{ route('register.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="name">Nama Lengkap</label>

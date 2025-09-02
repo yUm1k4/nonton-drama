@@ -27,4 +27,11 @@ class AuthController extends Controller
 
         return redirect()->route('home');
     }
+
+    public function logout()
+    {
+        $this->authRepository->logout();
+
+        return redirect()->route('home');
+    }
 }
