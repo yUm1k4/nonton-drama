@@ -10,7 +10,7 @@
             </button>
         </div>
         <img src="{{ asset('storage/' . $series->thumbnail) }}" class="w-full h-full object-cover object-center" alt="trending-1" />
-        <a href="/play.html"
+        <a href="{{ route('series.play', [$series->slug, $series->episodes->first()->id]) }}"
            class="bg-white/[12%] z-40 backdrop-blur-[10px] absolute p-[11px] rounded-full top-[221px] left-1/2 -translate-x-1/2 hover:animate-pulse">
             <img src="{{ asset('assets') }}/icons/play.svg" alt="play" class="w-[53px] h-[53px]" />
         </a>
