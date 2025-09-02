@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Interfaces\AuthRepositoryInterface;
 
@@ -24,6 +25,20 @@ class AuthController extends Controller
         $data = $request->validated();
 
         $this->authRepository->register($data);
+
+        return redirect()->route('home');
+    }
+
+    public function loginForm()
+    {
+        return view('pages.auth.login');
+    }
+
+    public function storeLogin(LoginRequest $request)
+    {
+        $data = $request->validated();
+
+        $this->authRepository->login($data);
 
         return redirect()->route('home');
     }

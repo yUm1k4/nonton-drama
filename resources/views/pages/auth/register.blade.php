@@ -70,7 +70,7 @@
 
         <p class="mt-8 text-xs text-center">
             Sudah punya akun?
-            <a href="/" class="underline text-secondary">Masuk di sini.</a>
+            <a href="{{ route('login') }}" class="underline text-secondary">Masuk di sini.</a>
         </p>
     </div>
 </x-auth-layout>

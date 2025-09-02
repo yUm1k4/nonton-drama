@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/series/{slug}', [SeriesController::class, 'show'])->name('series.show');
 
+Route::get('/login', [AuthController::class, 'loginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'storeLogin'])->name('login.store');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
