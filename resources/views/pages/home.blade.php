@@ -1,9 +1,16 @@
+@php
+    $defaultProfilePicture = 'https://ui-avatars.com/api/?name=' . urlencode(auth()->user()->name ?? 'User');
+    $profilePicture = auth()->check()
+        ? (auth()->user()->profile_picture ? 'storage/' . auth()->user()->profile_picture : $defaultProfilePicture)
+        : $defaultProfilePicture;
+@endphp
+
 <x-app-layout title="Home">
     <header class="flex mx-[19px] flex-col gap-6">
         @auth
             <div class="flex justify-between">
                 <div class="flex items-center gap-3 p-1 rounded-full bg-light/[.08] backdrop-blur-[48px]">
-                    <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" class="object-cover object-center border-2 rounded-full w-9 h-9"
+                    <img src="{{ asset($profilePicture) }}" class="object-cover object-center border-2 rounded-full w-9 h-9"
                          alt="Profile Picture" />
                     <p class="mr-2 font-medium">Hi, {{ auth()->user()->name }} 👋</p>
                 </div>
