@@ -50,4 +50,25 @@ class SeriesEpisodeRepository implements SeriesEpisodeRepositoryInterface
             ->where('series_episode_id', $episodeId)
             ->first();
     }
+
+    public function unlock($episodeId)
+    {
+        $user = auth()->user();
+        $episode = SeriesEpisode::findOrFail($episodeId);
+
+        if ($user->wallet->coin_balance < $episode->unlock_cost) {
+            return false;
+        }
+
+        UnlockedEpisode::create([
+            'user_id' => $user->id,
+            'series_episode_id' => $episodeId,
+        ]);
+
+        // update user wallet
+        $user->wallet->coin_balance -= $episode->unlock_cost;
+        $user->wallet->save();
+
+        return true;
+    }
 }

@@ -64,6 +64,7 @@
     @endif
 
     <x-modal-episode-list :series="$series" :episode="$episode" :episodes="$episodes" />
+    <x-modal-open-episode :series="$series" :episode="$episode" />
 
     @pushonce('scripts')
         <script src="{{ asset('assets/js/play.js') }}"></script>

@@ -67,4 +67,18 @@ class SeriesController extends Controller
         // header yang diperlukan untuk streaming (Content-Type, Content-Length, dll.)
         return Storage::disk('local')->response($episode->video);
     }
+
+    public function unlockEpisode($slug, $episodeId)
+    {
+        $success = $this->seriesEpisodeRepository->unlock($episodeId);
+
+        if (!$success) {
+            return redirect()->back()->with('error', 'Insufficient coin balance to unlock this episode.');
+        }
+
+        return redirect()->route('series.play', [
+            'slug' => $slug,
+            'episodeId' => $episodeId,
+        ])->with('success', 'Episode unlocked successfully.');
+    }
 }

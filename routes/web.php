@@ -19,6 +19,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/series/{slug}/play/{episodeId}', [SeriesController::class, 'play'])->name('series.play');
     Route::get('/stream/episode/{episodeId}', [SeriesController::class, 'streamVideo'])
         ->name('series.stream');
+    Route::post('/series/{slug}/unlock/{episodeId}', [SeriesController::class, 'unlockEpisode'])
+        ->name('series.unlock');
 });
 
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
