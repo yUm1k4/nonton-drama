@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\CoinPackageRepositoryInterface;
 use App\Interfaces\SeriesEpisodeRepositoryInterface;
 use App\Interfaces\SeriesRepositoryInterface;
-use App\Repositories\SeriesEpisodeRepository;
 use Illuminate\Support\Facades\Storage;
 
 class SeriesController extends Controller
 {
     protected $seriesRepository;
     protected $seriesEpisodeRepository;
+    protected $coinPackageRepository;
 
     public function __construct(
         SeriesRepositoryInterface $seriesRepository,
-        SeriesEpisodeRepositoryInterface $seriesEpisodeRepository
+        SeriesEpisodeRepositoryInterface $seriesEpisodeRepository,
+        CoinPackageRepositoryInterface $coinPackageRepository
     )
     {
         $this->seriesRepository = $seriesRepository;
         $this->seriesEpisodeRepository = $seriesEpisodeRepository;
+        $this->coinPackageRepository = $coinPackageRepository;
     }
 
     public function show($slug)
@@ -38,13 +41,14 @@ class SeriesController extends Controller
         $episode = $this->seriesEpisodeRepository->getById($episodeId);
         $episodes = $this->seriesEpisodeRepository->getBySeriesId($series->id);
         $isUnlocked = $this->seriesEpisodeRepository->isUnlocked($episodeId);
+        $coinPackages = $this->coinPackageRepository->getAll();
 
         // klo episode nya ke-lock dan user belum buka
         if (!$isUnlocked && $episode->is_locked) {
             $episode->video = null;
         }
 
-        return view('pages.series.play', compact('series', 'episode', 'episodes', 'isUnlocked'));
+        return view('pages.series.play', compact('series', 'episode', 'episodes', 'isUnlocked', 'coinPackages'));
     }
 
     public function streamVideo($episodeId)

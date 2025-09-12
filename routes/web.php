@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SeriesController;
+use App\Http\Controllers\TopUpController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -21,6 +22,9 @@ Route::middleware(['auth'])->group(function () {
         ->name('series.stream');
     Route::post('/series/{slug}/unlock/{episodeId}', [SeriesController::class, 'unlockEpisode'])
         ->name('series.unlock');
+
+    Route::get('/topup', [TopUpController::class, 'index'])->name('topup.index');
+    Route::post('/topup', [TopUpController::class, 'store'])->name('topup.store');
 });
 
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
