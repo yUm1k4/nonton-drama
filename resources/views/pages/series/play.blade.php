@@ -50,4 +50,22 @@
             </div>
         </div>
     </div>
+
+    @if(!$isUnlocked && $episode->is_locked)
+        <div id="locked-episode-element"
+             class="flex absolute w-full justify-center items-center bg-black/[88%] z-50 h-screen">
+            <button id="unlock-episode-button" class="flex gap-2 items-center bg-secondary h-fit py-3 px-16 rounded-full">
+                <div class="p-1 rounded-full flex-shrink-0 bg-[#1F0E0B]/[6%] backdrop-blur-sm">
+                    <img src="{{ asset('assets') }}/icons/black-lock.svg" class="" alt="Black lock icon" />
+                </div>
+                <span class="font-bold text-[#1F0E0B]">Buka Episode Ini</span>
+            </button>
+        </div>
+    @endif
+
+    <x-modal-episode-list :series="$series" :episode="$episode" :episodes="$episodes" />
+
+    @pushonce('scripts')
+        <script src="{{ asset('assets/js/play.js') }}"></script>
+    @endpushonce
 </x-app-layout>

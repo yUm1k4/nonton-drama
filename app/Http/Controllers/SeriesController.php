@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\SeriesEpisodeRepositoryInterface;
 use App\Interfaces\SeriesRepositoryInterface;
+use App\Repositories\SeriesEpisodeRepository;
 use Illuminate\Support\Facades\Storage;
 
 class SeriesController extends Controller
@@ -35,8 +36,15 @@ class SeriesController extends Controller
     {
         $series = $this->seriesRepository->getBySlug($slug);
         $episode = $this->seriesEpisodeRepository->getById($episodeId);
+        $episodes = $this->seriesEpisodeRepository->getBySeriesId($series->id);
+        $isUnlocked = $this->seriesEpisodeRepository->isUnlocked($episodeId);
 
-        return view('pages.series.play', compact('series', 'episode'));
+        // klo episode nya ke-lock dan user belum buka
+        if (!$isUnlocked && $episode->is_locked) {
+            $episode->video = null;
+        }
+
+        return view('pages.series.play', compact('series', 'episode', 'episodes', 'isUnlocked'));
     }
 
     public function streamVideo($episodeId)
