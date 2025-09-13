@@ -6,6 +6,8 @@ use App\Interfaces\TopUpRepositoryInterface;
 use App\Models\CoinPackage;
 use App\Models\CoinTopUp;
 use Illuminate\Support\Str;
+use Midtrans\Config;
+use Midtrans\Snap;
 
 class TopUpRepository implements TopUpRepositoryInterface
 {
@@ -22,6 +24,26 @@ class TopUpRepository implements TopUpRepositoryInterface
             'amount' => $coinPackage->price,
         ]);
 
-        return $topup;
+        // config midtrans
+        Config::$serverKey = config('midtrans.serverKey');
+        Config::$isProduction = config('midtrans.isProduction');
+        Config::$isSanitized = config('midtrans.isSanitized');
+        Config::$is3ds = config('midtrans.is3ds');
+
+        // parameter yg akan dikirim ke midtrans nya
+        $params = [
+            'transaction_details' => [
+                'order_id' => $topup->code,
+                'gross_amount' => $topup->amount,
+            ],
+            'customer_details' => [
+                'first_name' => auth()->user()->name,
+                'email' => auth()->user()->email,
+            ],
+        ];
+
+        $paymentUrl = Snap::createTransaction($params)->redirect_url;
+
+        return $paymentUrl;
     }
 }

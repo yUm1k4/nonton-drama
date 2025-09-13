@@ -51,6 +51,13 @@ class TopUpController extends Controller
     {
         $data = $request->validated();
 
-        $this->topUpRepository->create($data);
+        $paymentUrl = $this->topUpRepository->create($data);
+
+        return redirect($paymentUrl);
+    }
+
+    public function success()
+    {
+        return view('pages.topup.success');
     }
 }

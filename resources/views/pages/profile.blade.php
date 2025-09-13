@@ -22,10 +22,10 @@
                 <p class="font-bold">{{ $user->wallet->coin_balance }} Koin</p>
             </div>
 
-            <div class="bg-secondary flex items-center gap-1 p-3 rounded-full">
+            <a href="{{ route('topup.index') }}" class="bg-secondary flex items-center gap-1 p-3 rounded-full">
                 <img src="{{ asset('assets') }}/icons/card-plus.svg" alt="card plus" />
                 <p class="font-bold text-[#1F0E0B]">Top Up</p>
-            </div>
+            </a>
         </div>
 
         <div class="mt-6">

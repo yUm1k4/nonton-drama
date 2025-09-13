@@ -25,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/topup', [TopUpController::class, 'index'])->name('topup.index');
     Route::post('/topup', [TopUpController::class, 'store'])->name('topup.store');
+    Route::get('/topup/success', [TopUpController::class, 'success'])->name('topup.success');
 });
 
 Route::get('/register', [AuthController::class, 'registerForm'])->name('register');
